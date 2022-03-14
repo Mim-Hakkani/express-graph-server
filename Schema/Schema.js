@@ -80,8 +80,8 @@ const mutation = new GraphQLObjectType({
         addUser:{
             type:UserType,
             args:{
-                name: {type:graphql.GraphQLString},
-                age:{type:graphql.GraphQLInt},
+                name: {type: new GraphQLNonNull(graphql.GraphQLString)},
+                age:{type:new GraphQLNonNull(graphql.GraphQLInt)},
                 companyId:{type:graphql.GraphQLString}
             },
             resolve(){
