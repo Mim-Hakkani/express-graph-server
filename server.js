@@ -10,7 +10,7 @@ app.use('/graphql', expressGraphQL({
 }));
 
 app.get('/', (req, res) => {
-  res.send('Hello World! mim hakkani is herer')
+  res.send('Hello World! mim hakkani')
 })
 
 app.listen(4000, () => {
