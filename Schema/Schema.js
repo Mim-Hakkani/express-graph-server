@@ -6,17 +6,6 @@ const {
 }=graphql
 
 
-//user schema 
-const UserType =new GraphQLObjectType({
-    name:'User',
-    fields:{
-        id:{type:graphql.GraphQLString},
-        title:{type:graphql.GraphQLString},
-        name:{type:graphql.GraphQLString},
-        age:{type:graphql.GraphQLInt},
-    }
-});
-
 //company schema 
 
 const CompanyType =new GraphQLObjectType({
@@ -27,6 +16,22 @@ const CompanyType =new GraphQLObjectType({
         desc:{type:graphql.GraphQLString},
     }
 });
+
+//user schema 
+const UserType =new GraphQLObjectType({
+    name:'User',
+    fields:{
+        id:{type:graphql.GraphQLString},
+        title:{type:graphql.GraphQLString},
+        name:{type:graphql.GraphQLString},
+        age:{type:graphql.GraphQLInt},
+        company:{
+            type:CompanyType
+        }
+    }
+});
+
+
 
 
 const RootQuery =new GraphQLObjectType({
