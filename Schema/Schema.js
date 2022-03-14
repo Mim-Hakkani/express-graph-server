@@ -10,11 +10,19 @@ const {
 
 const CompanyType =new GraphQLObjectType({
     name:'Company',
-    fields:{
+    fields: ()=>({
         id:{type:graphql.GraphQLString},
         fname:{type:graphql.GraphQLString},
         desc:{type:graphql.GraphQLString},
-    }
+        users:{
+            type:new graphql.GraphQLList(UserType),
+            resolve(parentValue,args){    
+             return axios.get(`http://localhost:3000/companies/${parentValue.id}/users`)
+             .then(res=>res.data);
+                
+            }
+        }
+    })
 });
 
 //user schema 
