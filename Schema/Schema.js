@@ -50,6 +50,17 @@ const RootQuery =new GraphQLObjectType({
              .then(res=>res.data);
                 
             }
+        },
+
+        //add a another root company schema for call a single value 
+
+        company:{
+            type:CompanyType,
+            args:{id:{type:graphql.GraphQLString}},
+            resolve(parentValue,args){
+                return axios.get(`http://localhost:3000/companies/${args.id}`)
+                .then(res=>res.data)
+            }
         }
     }
 });
