@@ -2,7 +2,8 @@ const graphql =require('graphql');
 const axios = require('axios')
 const {
     GraphQLObjectType,
-    GraphQLSchema
+    GraphQLSchema,
+    GraphQLNonNull
 }=graphql
 
 
@@ -84,8 +85,9 @@ const mutation = new GraphQLObjectType({
                 age:{type:new GraphQLNonNull(graphql.GraphQLInt)},
                 companyId:{type:graphql.GraphQLString}
             },
-            resolve(){
-
+           resolve(parentValue,{name,age}){
+                return axios.post(`http://localhost:3000/users`,{name,age})
+                .then(res=>res.data)
             }
         }
     }
@@ -93,6 +95,7 @@ const mutation = new GraphQLObjectType({
 
 
 module.exports = new GraphQLSchema({
-    query:RootQuery
+    query:RootQuery,
+    mutation
 });
 
